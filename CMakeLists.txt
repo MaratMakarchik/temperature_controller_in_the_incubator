@@ -35,7 +35,9 @@ enable_language(C ASM)
 add_executable(${CMAKE_PROJECT_NAME}
         Core/Lib/st7735.c
         Core/Lib/fonts.c
-        Core/Lib/hal_st7735.c)
+        Core/Lib/hal_st7735.c
+        Core/Lib/encoder.c
+        Core/Lib/hal_encoder.c)
 
 # Add STM32CubeMX generated sources
 add_subdirectory(cmake/stm32cubemx)
