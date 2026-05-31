@@ -11,21 +11,18 @@ typedef enum {
     ENCODER_BUTTON
 } EncoderEvent_t;
 
-// Основная функция – вызывайте её в цикле или по таймеру (рекомендуется не реже 1 кГц)
-EncoderEvent_t Encoder_Event(void);
+// Эту функцию вызываем в прерывании таймера строго каждые 1 мс
+void Encoder_Scan(void);
 
-// ----- Аппаратно-зависимые функции, которые вы должны реализовать -----
-// Чтение состояний выводов энкодера (возвращают 0 или 1)
+// Эту функцию вызываем в основном цикле while(1) для обработки событий
+EncoderEvent_t Encoder_GetEvent(void);
+
+// Аппаратно-зависимые функции
 extern uint8_t Encoder_State_S1(void);
 extern uint8_t Encoder_State_S2(void);
 extern uint8_t Encoder_State_Button(void);
 
-// Функция для получения текущего времени в миллисекундах (или любых единицах)
-// Примеры: HAL_GetTick() для STM32, millis() для Arduino.
-extern uint32_t Encoder_GetTick(void);
-// -------------------------------------------------------------------
-
-// Настройка времени подавления дребезга (миллисекунды)
+// Время подавления дребезга (теперь в количестве вызовов, т.е. миллисекундах)
 #define ENCODER_DEBOUNCE_MS  5
 
 #endif // ENCODER_H
