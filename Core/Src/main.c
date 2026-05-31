@@ -115,13 +115,13 @@ int main(void)
       ST7735_FillScreen(ST7735_BLACK);
 
       if (state == ENCODER_LEFT) {
-        ST7735_WriteString(10, 10, "ЛЕВО", Font_7x10_RU, ST7735_WHITE, ST7735_BLACK, 2);
+        ST7735_WriteString(50, 50, "ЛЕВО", Font_11x18_RU, ST7735_WHITE, ST7735_BLACK, 1);
       }
       else if (state == ENCODER_RIGHT) {
-        ST7735_WriteString(10, 10, "ПРАВО", Font_7x10_RU, ST7735_WHITE, ST7735_BLACK, 2);
+        ST7735_WriteString(50, 50, "ПРАВО", Font_11x18_RU, ST7735_WHITE, ST7735_BLACK, 1);
       }
       else if (state == ENCODER_BUTTON) {
-        ST7735_WriteString(10, 10, "КНОПКА", Font_7x10_RU, ST7735_WHITE, ST7735_BLACK, 2);
+        ST7735_WriteString(50, 50, "КНОПКА", Font_11x18_RU, ST7735_WHITE, ST7735_BLACK, 1);
       }
     }
     /* USER CODE BEGIN 3 */
