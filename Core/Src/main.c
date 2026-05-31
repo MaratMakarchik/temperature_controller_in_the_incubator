@@ -22,6 +22,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "st7735.h"
+#include "encoder.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -92,7 +93,8 @@ int main(void)
   /* USER CODE BEGIN 2 */
   ST7735_Init();
   ST7735_FillScreen(ST7735_BLACK);
-  ST7735_WriteString(10, 10, "привет мир !!!", Font_7x10_RU, ST7735_WHITE, ST7735_BLACK, 1);
+  //ST7735_WriteString(10, 10, "привет мир !!!", Font_7x10_RU, ST7735_WHITE, ST7735_BLACK, 1);
+  HAL_GetTick();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -100,8 +102,20 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-    HAL_Delay(100);
-    HAL_GPIO_TogglePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin);
+    EncoderEvent_t state = Encoder_Event();
+    if (state == ENCODER_LEFT) {
+      ST7735_FillScreen(ST7735_BLACK);
+      ST7735_WriteString(10, 10, "ЛЕВО", Font_7x10_RU, ST7735_WHITE, ST7735_BLACK, 2);
+    }
+    else if (state == ENCODER_RIGHT) {
+      ST7735_FillScreen(ST7735_BLACK);
+      ST7735_WriteString(10, 10, "ПРАВО", Font_7x10_RU, ST7735_WHITE, ST7735_BLACK, 2);
+    }
+    else if (state == ENCODER_BUTTON) {
+      ST7735_FillScreen(ST7735_BLACK);
+      ST7735_WriteString(10, 10, "КНОПКА", Font_7x10_RU, ST7735_WHITE, ST7735_BLACK, 2);
+    }
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -230,6 +244,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : ENCODER_S1_Pin ENCODER_S2_Pin ENCODER_KEY_Pin */
+  GPIO_InitStruct.Pin = ENCODER_S1_Pin|ENCODER_S2_Pin|ENCODER_KEY_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */

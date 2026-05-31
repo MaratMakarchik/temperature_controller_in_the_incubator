@@ -69,6 +69,12 @@ void Error_Handler(void);
 #define TFT_RESET_GPIO_Port GPIOB
 #define TFT_D_C_Pin GPIO_PIN_1
 #define TFT_D_C_GPIO_Port GPIOB
+#define ENCODER_S1_Pin GPIO_PIN_3
+#define ENCODER_S1_GPIO_Port GPIOB
+#define ENCODER_S2_Pin GPIO_PIN_4
+#define ENCODER_S2_GPIO_Port GPIOB
+#define ENCODER_KEY_Pin GPIO_PIN_5
+#define ENCODER_KEY_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
