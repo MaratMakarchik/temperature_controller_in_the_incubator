@@ -95,6 +95,8 @@ int main(void)
   MX_SPI1_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
+  void Encoder_init(void);
+
   ST7735_Init();
   ST7735_FillScreen(ST7735_BLACK);
   ST7735_WriteString(10, 10, "привет мир !!!", Font_7x10_RU, ST7735_WHITE, ST7735_BLACK, 1);
